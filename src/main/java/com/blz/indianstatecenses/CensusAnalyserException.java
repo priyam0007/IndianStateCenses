@@ -1,19 +1,22 @@
 package com.blz.indianstatecenses;
 
 public class CensusAnalyserException extends Exception {
-	enum ExceptionType {
-		CENSUS_FILE_PROBLEM, CENSUS_INCORRECT_FILE_FORMAT, CENSUS_WRONG_DELIMITER_OR_WRONG_HEADER
-	}
 
-	ExceptionType type;
+	@CsvBindByName(column = "State", required = true)
+	public String state;
 
-	public CensusAnalyserException(String message, ExceptionType type) {
-		super(message);
-		this.type = type;
-	}
+	@CsvBindByName(column = "Population", required = true)
+	public int population;
 
-	public CensusAnalyserException(String message, ExceptionType type, Throwable cause) {
-		super(message, cause);
-		this.type = type;
+	@CsvBindByName(column = "AreaInSqKm", required = true)
+	public int areaInSqKm;
+
+	@CsvBindByName(column = "DensityPerSqKm", required = true)
+	public int densityPerSqKm;
+
+	@Override
+	public String toString() {
+		return "IndiaCensusCSV{" + "State='" + state + '\'' + ", Population='" + population + '\'' + ", AreaInSqKm='"
+				+ areaInSqKm + '\'' + ", DensityPerSqKm='" + densityPerSqKm + '\'' + '}';
 	}
 }
